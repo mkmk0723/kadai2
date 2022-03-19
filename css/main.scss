@@ -1,0 +1,893 @@
+@charset "utf-8";
+
+@mixin maincolor {
+    color: #2d2d2d;
+}
+@mixin  subcolor {
+    color: #0B5240 ;
+}
+@mixin  mailcolor {
+    color: #DBCEA0;
+}
+// responsive
+$size:tab,sp;
+// max-width
+$breakpoint: (
+   'tab':'screen and (max-width: 1200px)',
+   'sp' :'screen and (max-width: 768px)',
+)!default;
+// @mixinの定義
+@mixin mq($size: md) {
+    @media #{map-get($breakpoint, $size)} {
+      @content;
+    }
+  }
+html {
+    font-size: 100%;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0 auto;
+    @include maincolor;
+    font-family: 'Noto Sans JP', sans-serif;
+    
+}
+* {
+    box-sizing:border-box;
+}
+img {
+    width: 100%;
+    
+}
+li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    @include maincolor;
+}
+h1 {
+    font-size: 42px;
+    @include mq('sp') {
+        font-size: 32px;
+        line-height: 60px;
+    }
+}
+h2 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    @include mq('tab') {
+        font-size: 36px;
+    }
+    @include mq('sp') {
+        font-size: 36px;
+    }
+    
+}
+h3 {
+    font-size: 36px;
+    color: #000;
+    @include mq('tab') {
+        font-size: 28.8px;
+    }
+    @include mq('sp'){
+        font-size: 26px;
+        
+    }
+
+}
+.btn {
+    width: 180px;
+    background-color: #DBCEA0;
+    padding: 16px 50px ;
+    @include mq('tab'){
+        font-size: 12.8px;
+        width: 144px;
+        padding: 12.8px 40px;
+    }
+
+}
+// ----------------.header----------------
+.header {
+    width: 100%;
+    height: 80px;
+    background: #fff;
+    align-items: center;
+    @include mq('sp') {
+        height: 65px;
+    }
+
+    &__inner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        
+}
+   &__logo {
+       max-width: 116px;
+       line-height: 80px;
+       padding-left: 40px;
+   }
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color:rgba(255,255,255,0.8);
+    transition: .8s;
+    height: 80px;
+    box-shadow:0px 1px 5px 0px rgba(0, 0, 0,0.2) ;
+
+    @include mq('sp') {
+        display: none;
+        position: fixed;
+    }
+    
+  }
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+ // -----------sp----------------------
+    @include mq('sp') {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        padding-top: 100px;
+        padding-bottom: 62px;
+        text-align: center;
+        background: #fff;
+        transition: all .3s;
+        z-index: -1;
+    }
+    }
+
+.menu-eng {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-family: Arial;
+    position: relative;
+   &::after {
+      position: absolute; 
+      content: "";
+      bottom: -6px;
+      left: 32%;
+      width: 35%;
+      height: 1px;
+      background: #0B5240;
+      transform: scale(0,1);
+      transform-origin: left top;
+      transition: all .3s;
+    }
+   &:hover::after {
+    transform: scale(1,1);
+}
+   
+}
+.menu__item{
+   margin-top: 19px;
+   margin-right: 15px;
+   margin-bottom: 2px;
+   @include mq('sp'){
+    margin-top: 0px;
+    margin-bottom: 55px;
+    font-weight: bold;
+   }
+   .menu-eng {
+       font-weight: normal;
+   }
+}
+
+.menu__btn {
+    display: block;
+    @include mq('sp'){
+        display: none;
+    }
+}
+.menu__btn-sp {
+    display: none;
+    @include mq('sp'){
+        display: block;
+        margin: 0 auto;
+        max-width: 214px;
+    }
+}
+
+// ---------------.toggle-btn---------------
+.toggle-btn {
+    display: block;
+    position: absolute;
+    top: 21px;
+    right: 4vw;
+     opacity: 0;
+     @include mq('sp') {
+    opacity: 1;
+    span {
+        display: block;
+        position: absolute;
+        right: 0;
+        width: 30px;
+        height: 2px;
+        background-color: #000;
+        transition: all .5s; 
+
+        &:nth-child(1) {
+            top: 6px;
+        }
+        &:nth-child(2) {
+            top: 13px;
+        }
+        &:nth-child(3) {
+            top: 20px;
+        }
+   
+  }
+}
+}
+
+// -------open------- 
+.toggle-btn.open {
+    transform: rotate(360deg);
+    z-index: 999;
+    position: absolute;
+    top: 21px;
+    right: 4vw;
+ }
+    .toggle-btn.open span {
+       background: #000; 
+
+       &:nth-child(1) {
+        transform: translateY(12px) rotate(45deg);
+        width: 28px  
+       }
+       &:nth-child(2) {
+        opacity: 0;
+       }
+       &:nth-child(3) {
+        transform: translateY(-2px) rotate(-45deg);
+        width: 28px  
+       }
+        &__item {
+            display: block;
+            text-align: center;       
+        }
+
+    }
+    .menu.open {
+        opacity: 1;
+        z-index: 3;
+        color: #000;
+    }
+    
+
+
+
+
+// -----------.main--------------------------
+
+.main {
+    background: url(../img/mainimage.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+
+    &__inner {
+        position: absolute;
+        top: 42%;
+        left: 8%;
+        color: #fff;
+    }
+}
+
+// ----------------.news--------------------------
+
+.news {
+    position: relative;
+    top: -60px;
+    margin-bottom: 100px;
+
+    &__inner {
+        position: absolute;
+        background: rgba(255,255,255,0.9);
+        box-shadow:0px 1px 5px 0px rgba(0, 0, 0,0.2);
+        left: 8%;
+        @include mq('sp'){
+          display: block;
+          margin: 0 5%;
+          margin-bottom: 60px;
+            
+        }
+
+
+        .list__flex {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 50px;
+        // text-align: center;
+        line-height: 102px;
+        @include maincolor();
+
+        @include mq('sp'){
+            flex-direction: column;
+            text-align: left;
+            line-height:normal;
+            padding: 20px;
+         
+        }
+
+        .list-day {
+            font-family: Quicksand;
+            margin-right: 32px;
+            @include mq('sp'){
+             margin-bottom: 8px;   
+
+            }
+      
+        }
+        .list-ttl {
+            text-decoration: underline;
+            text-decoration-color: #2d2d2d;
+    
+        }
+    }
+  }  
+}
+// ---------------.info-------------------------
+.info {
+    display: flex;
+    position: relative;
+    margin-bottom: 100px;
+    @include mq('tab'){
+        margin-bottom: 80px;
+    }
+    @include mq('sp'){
+        // position: initial;
+        flex-direction: column;       
+        }
+    .info__img img {
+        @include mq('sp'){
+        position: absolute;
+        width: 100%;
+        top: 360px;
+        left: -10%;
+       margin-bottom: 60px;
+                  
+            }
+           
+    }
+
+    &__inner {
+        position: absolute;
+        padding: 0 8%;
+        z-index: 3;
+        @include mq('sp'){
+         position: initial;
+         padding: 0 5%;
+         width: 100%;
+         
+        }
+
+    }
+    &__ttl{
+       
+       margin-bottom: 32px; 
+       @include mq('sp'){
+        margin-bottom: 15px;
+     }
+
+    }
+    &__value {
+        display: block;
+        @include subcolor();
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        @include mq('tab'){
+            font-size: 20px;
+        }
+        @include mq('sp'){
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+    }
+    &__text {
+        max-width: 550px;
+        margin-bottom: 40px;
+        @include mq('tab'){
+            // width: 440px;
+        }
+    }
+}
+
+// -------------.service--------------------------
+.service {
+    margin: 0 auto;
+    &__ttl {
+        text-align: center;
+        margin-bottom: 42px;
+        @include mq('tab'){
+            margin-bottom: 33.6px;
+        }
+    }
+
+    &__text {
+        margin: 0 auto;
+        text-align: center;
+        width: 750px;
+        margin-bottom: 40px;
+    }
+    &__list {
+        
+       .list{
+         display: flex;
+           position: relative;
+           margin-bottom: 40px;
+           @include mq('sp'){
+            position: initial;
+            flex-direction: column;
+            }
+           
+       }
+       .list__inner {
+           position: absolute;
+           width: 510px;
+           right: 10%;
+          padding: 69px 0;
+          z-index: 3;
+
+
+           @include mq('tab'){
+            width: 408px;
+            right: 0;
+        }
+           .list__No {
+               display: block;
+               float: left;
+               margin-right: 24px;
+               font-size: 66px;
+               font-weight: bold;
+               font-family: Quicksand;
+               @include subcolor();
+               @include mq('tab'){
+                margin-right: 19.2px;
+                font-size: 52.8px;
+            }
+           }
+           .list__ttl {
+               font-size: 26px;
+               font-weight: bold;
+               margin-bottom: 31px;
+               line-height: 66px;
+               @include mq('tab'){
+                font-size: 20.8px;
+            }
+           }
+       }
+    .list__3 {
+       display: flex;
+        position: relative;
+        margin-bottom: 100px;
+        @include mq('tab'){
+            margin-bottom: 80px;
+        }
+    }
+  
+       
+    }
+
+}
+// ---------.works-----------------------------
+.works {
+    
+    background-image: url(../img/works-bg.jpg);
+    height: 862px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include mq('tab'){
+       height: 690px;
+    }
+
+    
+    &__ttl {
+         color: #fff;
+         text-align: center;
+         padding-top: 100px;
+         margin-bottom: 42px;
+         @include mq('tab'){
+            margin-top: 80px;
+            margin-bottom: 33.6px;
+        }
+    }
+    &__text {
+        color: #fff;
+        width: 750px;
+        margin: 0 auto;
+        text-align: center;
+        margin-bottom: 14px;
+    }
+    &__list {
+        display: flex;
+        background-color: #fff;
+        height: 354px;
+        @include mq('tab'){
+            height: 285.6px;
+        }        
+    }
+    &__list-item {
+        display: block;
+        margin: 0 auto;
+        margin-top: 96px;
+        // margin-right: 40px;
+        @include mq('tab'){
+            margin-top: 80px;
+        }
+        
+        img {
+            width: 364px;
+            height: 214px;
+            @include mq('tab'){
+                width: 291.2px;
+                height:171.2px;
+            }
+        }
+    }
+
+    .btn {
+        display: block;
+        margin: 0 auto;
+        margin-top: 66px;
+        
+        
+    }
+   
+}
+// ------------------.design--------------------
+.design {
+    background-color: #f8f8f8;
+    padding-bottom: 100px;
+    margin-bottom: 100px;
+    @include mq('tab'){
+    padding-bottom: 80px;
+    margin-bottom: 80px;
+    }
+    &__inner {
+        max-width: 1168px;
+        margin: 0 auto;
+        // padding-left: 8%;
+    }
+
+    &__ttl {
+        color: #000;
+        text-align: center;
+        padding-top: 100px;
+        margin-bottom: 42px;
+        @include mq('tab'){
+            padding-top: 80px;
+            margin-bottom: 33.6px;
+        }
+   }
+   &__text {
+       color: #000;
+       width: 750px;
+       text-align: center;
+       margin: 0 auto;
+       margin-bottom: 42px;
+   }
+   &__conteinar {
+       display: flex;
+       flex-wrap: wrap;
+       margin-bottom: 40px;
+       @include mq('tab'){
+        padding-left: 12px;
+    }
+   }
+
+   .btn {
+       display: block;
+       margin: 0 auto;
+   }
+  
+}
+   .card {
+       width: 359px;
+       margin: 0 30px 30px 0;
+       box-shadow: 0 3px 6px rgba(0, 0, 0,0.2);
+       @include mq('tab'){
+           width: 316px;
+          
+       }
+
+       &__img-wrapper {
+           position: relative;
+           padding-bottom: 30px;
+           padding-top: 56.25%;
+           overflow: hidden;
+       }
+       .card__img {
+           position: absolute; 
+           top: 50%;
+           width: 100%;
+           padding: 20px;
+           transform: translateY(-50%);        
+       }
+
+       .card__body {
+          text-align: center;
+           padding: 30px;
+           @include mq('tab'){
+            padding: 24px;
+        }
+
+           :last-child {
+               margin-bottom: 0;
+           }
+           .card__ttl {
+               margin-bottom: 5%;
+               font-size: 1.125rem;
+               font-weight: bold;
+           }
+           .card__text {
+               text-decoration: underline;
+               text-decoration-color: #000;
+
+           }
+       }
+   }
+// ---------------------.blog-------------------------------
+.blog {
+    padding: 0 8%;
+    &__inner {
+      position: relative;
+      background-color: #0B5240;
+      height: 412px;
+      margin-bottom: 91px;
+      @include mq('tab'){
+          height: 329.6px;
+      }
+    }
+    &__flex {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 70px;
+      @include mq('tab'){
+       padding-right: 56px;
+    }
+    @include mq('sp'){
+        position: initial;
+        flex-direction: column;
+        }
+      
+      
+    }
+    &__ttl {
+        color: #fff;
+        font-size: 36px;
+        font-weight: bold;
+        display: inline;
+        padding-top: 131px;
+        padding-left: 111px;
+        margin-bottom: 42px;
+        @include mq('tab'){
+            font-size: 28.8px;
+            padding-top: 104.8px;
+            padding-left: 88.8px;
+        }
+       
+        
+    }
+    &__info {
+        background-color: #fff;
+        padding: 50px;
+        margin-top: 100px;
+        @include mq('tab'){
+            padding: 20px;
+            margin-top: 80px; 
+        }
+        @include mq('sp'){
+               
+            }
+     
+    }
+    .list__flex {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        @include mq('tab'){
+            margin-bottom: 16px;
+        }
+        @include mq('sp'){
+            position: initial;
+            flex-direction: column;       
+            }
+        .list-day {
+            margin-right: 32px;
+            font-family: Quicksand;
+            @include mq('tab'){
+                margin-right: 25.6px;
+            }
+        }
+        .list-ttl {
+            text-decoration: underline;
+            text-decoration-color: #000;
+            @include mq('tab'){
+                font-size: 12.8px;
+            }
+        }
+    }
+
+    .btn {
+        display: block;
+        margin-top: -100px;
+        margin-left: 70px;
+        @include mq('tab'){
+            margin-top: -50px;
+            margin-left: 50px;
+           
+        }
+    }
+    
+}  
+// ---------------.cat---------------------------
+.cat {
+    background-color: #F0EAD5;
+    padding: 100px 0;
+
+    &__ttl {
+        text-align: center;
+        margin-bottom: 42px;
+    }
+    &__text {
+        font-size: 26px;
+        text-align: center;
+        margin-bottom: 33px;
+    }
+    &__flex {
+       display: flex;
+       justify-content: center;
+       margin-bottom: 24px;
+    }
+    .cat-tel__flex {
+        display: flex;
+        margin-right: 20px;
+        
+        
+        .tel {
+            font-size: 26px;
+            font-weight: bold;
+            @include subcolor();
+           margin-top: 14px;
+           margin-right: 5px;
+           line-height: 54px;
+
+        }
+        .No {
+            font-size: 46px;
+            font-family: Quicksand;
+            font-weight: bold;
+            @include subcolor();
+            line-height: 78px;
+        }
+    }
+    .cat-btn {
+        width: 394px;
+    }
+    .open-time {
+        display: block;
+        text-align: center;
+    }
+}
+// --------------------.footer-----------------
+.footer {
+    background-image: url(../img/footer-bg.jpg);
+    background-size: cover;
+    height: 554px;
+    padding: 100px 0;
+    color: #fff;
+    @include mq('tab'){
+       
+        padding:80px 0;
+    }
+  &__inner {
+      display: block;
+      text-align: center;
+  }
+  &__logo {
+      font-size: 42px;
+      font-weight: bold;
+      font-family: Quicksand;
+      margin-bottom: 40px;
+  }
+  &__ad {
+      line-height: 27.2px;
+  } 
+  &__menu {
+      padding: 0 220px;
+      margin-bottom: 70px;
+      .menu__item a {
+         color: #fff; 
+      }
+      @include mq('tab'){
+        padding: 0 176px;
+    }  
+  }
+  
+  &__copys {
+      text-align: center;
+  }
+
+}
+// ---------ふわっと出現-------------
+.fade {
+    opacity: 0;
+}
+.fadeUp{
+    animation-name:fadeUpAnime;
+    animation-duration:0.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    }
+    
+    @keyframes fadeUpAnime{
+      from {
+        opacity: 0;
+      transform: translateY(100px);
+      }
+    
+      to {
+        opacity: 1;
+      transform: translateY(0);
+      }
+    }
+
+    /* 左から */
+
+.fadeLeft{
+    animation-name:fadeLeftAnime;
+    animation-duration:0.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    }
+    
+    @keyframes fadeLeftAnime{
+      from {
+        opacity: 0;
+      transform: translateX(-100px);
+      }
+    
+      to {
+        opacity: 1;
+      transform: translateX(0);
+      }
+    }
+    
+    /* 右から */
+    
+    .fadeRight{
+    animation-name:fadeRightAnime;
+    animation-duration:0.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    }
+    
+    @keyframes fadeRightAnime{
+      from {
+        opacity: 0;
+      transform: translateX(100px);
+      }
+    
+      to {
+        opacity: 1;
+      transform: translateX(0);
+      }
+    }

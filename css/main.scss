@@ -828,10 +828,12 @@ h3 {
 
 }
 // ---------ふわっと出現-------------
-.fade {
+.fade-in {
     opacity: 0;
-}
-.fadeUp{
+   
+  }
+//   下から
+  .fade-in-up{
     animation-name:fadeUpAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -849,10 +851,31 @@ h3 {
       transform: translateY(0);
       }
     }
-
+    
+    /* 上から */
+    
+    .fade-in-down{
+    animation-name:fadeDownAnime;
+    animation-duration:0.5s;
+    animation-fill-mode:forwards;
+    opacity:0;
+    }
+    
+    @keyframes fadeDownAnime{
+      from {
+        opacity: 0;
+      transform: translateY(-100px);
+      }
+    
+      to {
+        opacity: 1;
+      transform: translateY(0);
+      }
+    }
+    
     /* 左から */
-
-.fadeLeft{
+    
+    .fade-in-left{
     animation-name:fadeLeftAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -873,7 +896,7 @@ h3 {
     
     /* 右から */
     
-    .fadeRight{
+    .fader-in-right{
     animation-name:fadeRightAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -891,3 +914,4 @@ h3 {
       transform: translateX(0);
       }
     }
+    

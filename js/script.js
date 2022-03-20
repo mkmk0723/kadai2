@@ -24,38 +24,51 @@ $(".menu a").click(function() {
 });
 
 $(window).scroll(function (){
-    fadeUpAnime();/* アニメーション用の関数を呼ぶ*/
+    fadeAnime();/* アニメーション用の関数を呼ぶ*/
   });
-function fadeUpAnime(){
+function fadeAnime(){
 // fadeUp
-$('.fade').each(function(){ //fadeUpTriggerというクラス名が
-	var elemPos = $(this).offset().top-50;//要素より、50px上の
+$('.fade-in-up').each(function(){ 
+	var elemPos = $(this).offset().top-50;
 	var scroll = $(window).scrollTop();
 	var windowHeight = $(window).height();
 	if (scroll >= elemPos - windowHeight){
-	$(this).addClass('fadeUp');// 画面内に入ったらfadeUpというクラス名を追記
-	}else{
-	$(this).removeClass('fadeUp');// 画面外に出たらfadeUpというクラス名を外す
+	$(this).addClass('fade-in');
+	$(this).removeClass('fade-in');
 	}
-}); $(window).scroll(function (){
-    fadeLeftAnime();/* アニメーション用の関数を呼ぶ*/
-  });
-}
+}); 
+// fadeDown
+$('.fade-in-down').each(function(){ 
+	var elemPos = $(this).offset().top-50;
+	var scroll = $(window).scrollTop();
+	var windowHeight = $(window).height();
+	if (scroll >= elemPos - windowHeight){
+	$(this).addClass('fade-in');
+	}else{
+	$(this).removeClass('fade-in');
+	}
+}); 
 
-
-$(window).scroll(function (){
-    fadeRightAnime();/* アニメーション用の関数を呼ぶ*/
-  });
-function fadeRightAnime(){	
 // fadeRight
-  $('.fade').each(function(){ //fadeRightTriggerというクラス名が
-    var elemPos = $(this).offset().top-50;//要素より、50px上の
+  $('.fade-in-right').each(function(){
+    var elemPos = $(this).offset().top-50;
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
     if (scroll >= elemPos - windowHeight){
-    $(this).addClass('fadeRight');// 画面内に入ったらfadeRightというクラス名を追記
+    $(this).addClass('fade-in');
     }else{
-    $(this).removeClass('fadeRight');// 画面外に出たらfadeRightというクラス名を外す
+    $(this).removeClass('fade-in');
     }
+});
+// fadeLeft
+$('.fade-in-left').each(function(){
+  var elemPos = $(this).offset().top-50;//要素より、50px上の
+  var scroll = $(window).scrollTop();
+  var windowHeight = $(window).height();
+  if (scroll >= elemPos - windowHeight){
+  $(this).addClass('fade-in');
+  }else{
+  $(this).removeClass('fade-in');
+  }
 });
 }

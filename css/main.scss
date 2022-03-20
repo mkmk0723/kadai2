@@ -14,7 +14,7 @@ $size:tab,sp;
 // max-width
 $breakpoint: (
    'tab':'screen and (max-width: 1200px)',
-   'sp' :'screen and (max-width: 768px)',
+   'sp' :'screen and (max-width: 769px)',
 )!default;
 // @mixinの定義
 @mixin mq($size: md) {
@@ -491,6 +491,7 @@ h3 {
     height: 862px;
     background-size: cover;
     background-repeat: no-repeat;
+    
     @include mq('tab'){
        height: 690px;
     }
@@ -514,41 +515,61 @@ h3 {
         margin-bottom: 14px;
     }
     &__list {
-        display: flex;
-        background-color: #fff;
-        height: 354px;
-        @include mq('tab'){
-            height: 285.6px;
-        }        
-    }
-    &__list-item {
-        display: block;
-        margin: 0 auto;
-        margin-top: 96px;
-        // margin-right: 40px;
-        @include mq('tab'){
-            margin-top: 80px;
-        }
-        
-        img {
-            width: 364px;
-            height: 214px;
-            @include mq('tab'){
-                width: 291.2px;
-                height:171.2px;
-            }
-        }
-    }
+        background-color:#fff;
+        height:354px;
+      }
 
     .btn {
         display: block;
         margin: 0 auto;
         margin-top: 66px;
-        
-        
     }
-   
 }
+// ---------スライダー---------------
+.slider {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    img {
+        width:364px;
+        height: auto;
+    }
+    .slick-slide {
+        margin: 0 10px;
+    }
+}
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid #000;/*矢印の色*/
+    border-right: 2px solid #000;/*矢印の色*/
+    height: 15px;
+    width: 15px;
+    
+}
+
+.slick-prev {/*戻る矢印の位置と形状*/
+    left: 1.5%;
+    z-index: 3;
+    transform: rotate(-135deg);
+}
+
+.slick-next {/*次へ矢印の位置と形状*/
+    right: 1.5%;
+    z-index: 3;
+    transform: rotate(45deg);
+}
+.slick-track {
+    padding-top: 6%;
+    min-width: 1176px;
+}
+
 // ------------------.design--------------------
 .design {
     background-color: #f8f8f8;
@@ -558,9 +579,10 @@ h3 {
     padding-bottom: 80px;
     margin-bottom: 80px;
     }
+
     &__inner {
-        max-width: 1168px;
-        margin: 0 auto;
+        
+       margin: 0 auto;
         // padding-left: 8%;
     }
 
@@ -585,7 +607,7 @@ h3 {
        display: flex;
        flex-wrap: wrap;
        margin-bottom: 40px;
-       @include mq('tab'){
+            @include mq('tab'){
         padding-left: 12px;
     }
    }
@@ -827,13 +849,17 @@ h3 {
   }
 
 }
+
 // ---------ふわっと出現-------------
-.fade-in {
+.fade-in-up,
+.fade-in-down,
+.fade-in-left,
+.fade-in-right {
     opacity: 0;
    
   }
 //   下から
-  .fade-in-up{
+  .fadeUp{
     animation-name:fadeUpAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -854,7 +880,7 @@ h3 {
     
     /* 上から */
     
-    .fade-in-down{
+    .fadeDown{
     animation-name:fadeDownAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -875,7 +901,7 @@ h3 {
     
     /* 左から */
     
-    .fade-in-left{
+    .fadeLeft{
     animation-name:fadeLeftAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;
@@ -896,7 +922,7 @@ h3 {
     
     /* 右から */
     
-    .fader-in-right{
+    .fadeRight{
     animation-name:fadeRightAnime;
     animation-duration:0.5s;
     animation-fill-mode:forwards;

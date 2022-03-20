@@ -6,13 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>課題２</title>
+    <!-- css -->
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <!-- slick -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nanum+Gothic+Coding:wght@400;700&family=Noto+Sans+JP&family=Playball&display=swap"
         rel="stylesheet">
 </head>
-
 <body>
     <!-- header -->
     <header class="header">
@@ -170,7 +172,10 @@
                         本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト
                     </p>
                 </div>
-                <ul class="works__list">
+                <ul class="works__list slider">
+                   <li class="works__list-item"><img src="img/sample.png" alt=""></li>
+                    <li class="works__list-item"><img src="img/sample.png" alt=""></li>
+                    <li class="works__list-item"><img src="img/sample.png" alt=""></li>
                     <li class="works__list-item"><img src="img/sample.png" alt=""></li>
                     <li class="works__list-item"><img src="img/sample.png" alt=""></li>
                     <li class="works__list-item"><img src="img/sample.png" alt=""></li>
@@ -303,8 +308,8 @@
                 <div class="blog__inner">
                     <div class="blog__flex">
                         <div class="blog__ttl ">BLOG</div>
-                        <div class="blog__info fade-in-up">
-                            <ul class="list-item">
+                        <div class="blog__info">
+                            <ul class="list-item fade-in-up">
                                 <li class="list__flex">
                                     <div class="list-day">2000/00/00</div>
                                     <div class="list-ttl">タイトルテキストリンクタイトルテキストリンクタイトルテキストリンク</div>
@@ -332,7 +337,7 @@
                     <h3 class="cat__ttl fade-in fade-in-down"> 資料請求・お問合せ</h3>
                     <div class="cat__text fade-in fade-in-down">質問や資料請求、お問い合わせはこちらからお気軽にどうぞ</div>
                     <div class="cat__flex">
-                        <div class="cat-tel__fle fade-in-left">
+                        <div class="cat-tel__flex fade-in-left">
                             <div class="tel">TEL</div>
                             <div class="No">03-1234-5678</div>
                         </div>
@@ -367,7 +372,11 @@
         </div>
         <div class="footer__copys">&copy2021 LOGO.</div>
     </footer>
+    
+　　
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="js/script.js"></script>
 
 </body>

@@ -31,6 +31,7 @@ a {
 
 h1 {
   font-size: 42px;
+  margin-top: 4px;
 }
 
 @media screen and (max-width: 769px) {
@@ -91,7 +92,6 @@ h3 {
 
 .header {
   width: 100%;
-  height: 80px;
   background: #fff;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -106,6 +106,7 @@ h3 {
 
 .header__inner {
   width: 100%;
+  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -116,7 +117,6 @@ h3 {
 
 .header__logo {
   max-width: 116px;
-  line-height: 80px;
   padding-left: 40px;
 }
 
@@ -141,6 +141,7 @@ h3 {
 }
 
 .menu {
+  margin-top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -489,7 +490,7 @@ h3 {
 .service__text {
   margin: 0 auto;
   text-align: center;
-  width: 750px;
+  max-width: 750px;
   margin-bottom: 40px;
 }
 
@@ -513,7 +514,7 @@ h3 {
 
 .service__list .list__inner {
   position: absolute;
-  width: 510px;
+  max-width: 510px;
   right: 10%;
   padding: 69px 0;
   z-index: 3;
@@ -599,7 +600,7 @@ h3 {
 
 .works__text {
   color: #fff;
-  width: 750px;
+  max-width: 750px;
   margin: 0 auto;
   text-align: center;
   margin-bottom: 14px;
@@ -607,13 +608,16 @@ h3 {
 
 .works__list {
   background-color: #fff;
-  height: 354px;
+  height: auto;
+}
+
+.works__list-item {
+  width: 364px;
 }
 
 .works .btn {
   display: block;
   margin: 0 auto;
-  margin-top: 66px;
 }
 
 .slider {
@@ -623,8 +627,7 @@ h3 {
 }
 
 .slider img {
-  width: 364px;
-  height: auto;
+  width: 100%;
 }
 
 .slider .slick-slide {
@@ -668,7 +671,6 @@ h3 {
 
 .slick-track {
   padding-top: 6%;
-  min-width: 1176px;
 }
 
 .design {
@@ -682,10 +684,6 @@ h3 {
     padding-bottom: 80px;
     margin-bottom: 80px;
   }
-}
-
-.design__inner {
-  margin: 0 auto;
 }
 
 .design__ttl {
@@ -704,7 +702,7 @@ h3 {
 
 .design__text {
   color: #000;
-  width: 750px;
+  max-width: 750px;
   text-align: center;
   margin: 0 auto;
   margin-bottom: 42px;
@@ -716,6 +714,7 @@ h3 {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  padding: 0 8%;
   margin-bottom: 40px;
 }
 
@@ -731,15 +730,23 @@ h3 {
 }
 
 .card {
-  width: 359px;
   margin: 0 30px 30px 0;
+  width: calc(33.33333333% - 60px/ 3);
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 1200px) {
+.card:nth-child(3n) {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 769px) {
   .card {
-    width: 316px;
+    margin: 0 20px 20px 0;
+    width: calc(50% - 50px/ 2);
+  }
+  .card:nth-child(2n) {
+    margin-right: 0;
   }
 }
 

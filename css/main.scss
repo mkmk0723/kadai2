@@ -13,7 +13,7 @@
 $size:tab,sp;
 // max-width
 $breakpoint: (
-   'tab':'screen and (max-width: 769px)',
+   'tab':'screen and (max-width: 1200px)',
    'sp' :'screen and (max-width: 375px)',
 )!default;
 // @mixinの定義
@@ -28,7 +28,7 @@ html {
 }
 
 body {
-    width: 100%;
+    max-width: 100%;
     overflow-x: hidden;
     margin: 0 auto;
     @include maincolor;
@@ -521,6 +521,7 @@ h3 {
     &__ttl {
         text-align: center;
         margin-bottom: 42px;
+        padding-top: 100px;
         @include mq('tab'){
             margin-bottom: 33.6px;
         }
@@ -539,7 +540,7 @@ h3 {
         
        .list{
          display: flex;
-        //    position: relative;
+           position: relative;
            margin-bottom: 40px;
            @include mq('sp'){
             // position: initial;
@@ -554,7 +555,7 @@ h3 {
          
        }
        .list__inner {
-        //    position: absolute;
+           position: absolute;
            max-width: 510px;
            right: 10%;
           padding: 69px 0;
@@ -606,7 +607,7 @@ h3 {
                }
            }
        }
-    .list .__3 {
+    .list.__3 {
        display: flex;
         position: relative;
         margin-bottom: 100px;
@@ -692,6 +693,7 @@ h3 {
     .btn {
         display: block;
         margin: 0 auto;
+        margin-top: 100px;
         // margin-top: 66px;
         @include mq('tab'){
             margin-top: 30px;
@@ -1090,7 +1092,7 @@ h3 {
 
   } 
   &__menu {
-      padding: 0 220px;
+      padding: 0 16.4%;
       margin-bottom: 70px;
       .menu__item a {
          color: #fff; 

@@ -4,7 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        var getDevice = (function(){
+        var ua = navigator.userAgent;
+        if(ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0){
+        return 'sp';
+        }else if(ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0){
+        return 'tab';
+        }else{
+        return 'other';
+        }
+        })();
+        if( getDevice == 'sp' ){
+        document.write('<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">');
+        }else if( getDevice == 'tab' ){
+        document.write('<meta name="viewport" content="width=1260">');
+        }else if( getDevice == 'other' ){
+        document.write('<meta name="viewport" content="width=375">');
+        }
+    //  </script>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>課題２</title>
     <!-- css -->
     <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
@@ -70,8 +89,10 @@
         <!-- main -->
         <div class="main">
             <div class="main__inner">
-                <h2 class="main__ttl fade-in-left">法人集客にフォーカスした<br>ホームページ制作のご提案を</h2>
-                <span class="main__text fade-in-left" style="display: block;">本文テキスト本文テキスト本文テキスト本文テキスト本<br>文テキスト本文テキ</span>
+                <h2 class="main__ttl fade-in-left pc">法人集客にフォーカスした<br>ホームページ制作のご提案を</h2>
+                <h2 class="main__ttl fade-in-left sp">法人集客に<br>フォーカスした<br>ホームページ制作のご提案を</h2>
+                <span class="main__text fade-in-left pc" style="display: block;">本文テキスト本文テキスト本文テキスト本文テキスト本<br>文テキスト本文テキ</span>
+                <span class="main__text fade-in-left sp" style="display: block;">本文テキスト本文テキスト本文テキスト本文<br>テキスト本文テキスト本文テキ</span>
             </div>
         </div>
         <!-- mainここまで -->
@@ -82,7 +103,8 @@
                 <ul class="list__item">
                     <li class="list__flex">
                         <div class="list-day">2000/00/00</div>
-                        <div class="list-ttl">タイトルテキストリンクタイトルテキストリンクタイトルテキストリンク</div>
+                        <div class="list-ttl pc">タイトルテキストリンクタイトルテキストリンクタイトルテキストリンク</div>
+                        <div class="list-ttl sp">タイトルテキストリンクタイトルテキ…</div>
                     </li>
                 </ul>
             </div>
@@ -94,9 +116,11 @@
             <div class="info">
                 
                 <div class="info__inner">
-                    <h3 class="info__ttl fade-in-left">
-                        高クオリティのホームページを<br>
-                        お手頃価格でご提供
+                    <h3 class="info__ttl fade-in-left pc">
+                        高クオリティのホームページを<br>お手頃価格でご提供
+                    </h3>
+                    <h3 class="info__ttl fade-in-left sp">
+                        高クオリティの<br>ホームページを<br>お手頃価格でご提供
                     </h3>
                     <span class="info__value fade-in-left">平均受注単価：45～65万円</span>
                     <p class="info__text fade-in-left">
@@ -107,7 +131,7 @@
                     <a class="btn fade-in-left" href="#">詳しく見る</a>
                 </div>
                 <div class="info__img fade-in-right">
-                    <img src="img/info.jpg" alt="">
+                    <img class="info__img pc" src="img/info-pc.jpg" alt="">
                 </div>
             </div>
         </section>
@@ -123,8 +147,8 @@
                     本文テキスト本文テキスト本文テキスト本文テキスト本文テキスト
                 </p>
                 <ul class="service__list">
-                    <li class="list">
-                        <div class="service__img fade-in-left"><img src="img/service1.png" alt=""></div>
+                    <li class="list __1">
+                        <div class="service__img fade-in-left"><img src="img/service1.jpg" alt=""></div>
                         <div class="list__inner fade-in-right">
                             <div class="list__No">01</div>
                             <div class="list__ttl">集客を最優先</div>
@@ -134,8 +158,8 @@
                             </p>
                         </div>
                     </li>
-                    <li class="list">
-                        <div class="service__img fade-in-left"><img src="img/service2.png" alt=""></div>
+                    <li class="list __2">
+                        <div class="service__img fade-in-left"><img src="img/service2.jpg" alt=""></div>
                         <div class="list__inner fade-in-right">
                             <div class="list__No">02</div>
                             <div class="list__ttl">安価な制作費用</div>
@@ -145,8 +169,8 @@
                             </p>
                         </div>
                     </li>
-                    <li class="list">
-                        <div class="service__img fade-in-left"><img src="img/service3.png" alt=""></div>
+                    <li class="list __3">
+                        <div class="service__img fade-in-left"><img src="img/service3.jpg" alt=""></div>
                         <div class="list__inner fade-in-right">
                             <div class="list__No">03</div>
                             <div class="list__ttl">最新デザイン</div>
@@ -342,7 +366,10 @@
                         </div>
                         <button class="cat-btn fade-in-right"><img src="img/contact.png" alt="#"></button>
                     </div>
-                    <span class="open-time fade-in-up">［営業時間］月〜金：10:00-18:00　土：10:00〜17:00</span>
+                    <div class="open-time fade-in-up">
+                        <div class="opne-time__ttl">［営業時間］</div>
+                        <div class="open-time__time">月〜金：10:00-18:00　土：10:00〜17:00</div>
+                    </div>
                 </div>
             </div>
         </section>

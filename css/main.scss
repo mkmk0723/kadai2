@@ -13,15 +13,16 @@
 $size:tab,sp;
 // max-width
 $breakpoint: (
-   'tab':'screen and (max-width: 1200px)',
-   'sp' :'screen and (max-width: 769px)',
+   'tab':'screen and (max-width: 769px)',
+   'sp' :'screen and (max-width: 375px)',
 )!default;
 // @mixinの定義
 @mixin mq($size: md) {
-    @media #{map-get($breakpoint, $size)} {
+@media #{map-get($breakpoint, $size)} {
       @content;
-    }
-  }
+}
+}
+
 html {
     font-size: 100%;
 }
@@ -51,11 +52,12 @@ a {
 h1 {
     font-size: 42px;
     margin-top: 4px;
+}
     @include mq('sp') {
         font-size: 32px;
         line-height: 60px;
     }
-}
+
 h2 {
     font-size: 50px;
     font-weight: bold;
@@ -84,12 +86,7 @@ h3 {
     width: 180px;
     background-color: #DBCEA0;
     padding: 16px 50px ;
-    @include mq('tab'){
-        font-size: 12.8px;
-        width: 144px;
-        padding: 12.8px 40px;
-    }
-
+    font-weight: bold;
 }
 // ----------------.header----------------
 .header {
@@ -105,13 +102,19 @@ h3 {
         height: 80px;
         display: flex;
         justify-content: space-between;
+    }
         
-}
+
    &__logo {
        max-width: 116px;
        padding-left: 40px;
-   }
+       @include mq('tab'){
+        padding-left:2% ;
+    }
 }
+    
+}   
+
 .fixed {
     position: fixed;
     top: 0;
@@ -143,7 +146,9 @@ h3 {
         text-align: center;
         background: #fff;
         transition: all .3s;
-        z-index: -1;
+        z-index: -3;
+        display: none;
+        opacity: 0;
     }
     }
 
@@ -206,7 +211,7 @@ h3 {
     top: 21px;
     right: 4vw;
      opacity: 0;
-     @include mq('sp') {
+   @include mq('sp') {
     opacity: 1;
     span {
         display: block;
@@ -260,6 +265,7 @@ h3 {
 
     }
     .menu.open {
+        display: block;
         opacity: 1;
         z-index: 3;
         color: #000;
@@ -278,9 +284,13 @@ h3 {
     min-height: 100vh;
     margin: 0 auto;
     position: relative;
+
     @include mq('sp'){
-      background-position: center;
-      max-height: 650px;  
+     background: url(../img/sp-mainimage.jpg);
+     background-repeat: no-repeat;
+     min-height: 0;
+     height: 650px;
+     width: 100%;
     }
 
     &__inner {
@@ -288,29 +298,66 @@ h3 {
         top: 42%;
         left: 8%;
         color: #fff;
+        @include mq('sp'){
+            top: 20%;
+        }  
     }
 }
-
+// PCとSPのテキストの切り替え
+    .main__ttl.pc{
+        @include mq('sp'){
+            display: none;
+        }  
+    }
+    .main__ttl.sp{
+         display: none;
+         @include mq('sp'){
+             display: block;
+         }
+    
+     }
+     .main__text.pc{
+        @include mq('sp'){
+            display: none !important;
+        }  
+    }
+    .main__text.sp{
+         display: none !important;
+         @include mq('sp'){
+             display: block !important;
+         }
+    
+     }
+// PCとSPのテキストの切り替え---ここまで
 // ----------------.news--------------------------
 
 .news {
     position: relative;
     top: -60px;
     margin-bottom: 100px;
+    @include mq('sp'){
+        top: -48px;
+    }
 
     &__inner {
         position: absolute;
         background: rgba(255,255,255,0.9);
         box-shadow:0px 1px 5px 0px rgba(0, 0, 0,0.2);
         left: 8%;
+        @include mq('tab'){
+            display: block;
+            left: 0;
+            margin:0 5%;
+            height: 120px;
+        }
         @include mq('sp'){
           display: block;
+          left: 0;
           margin: 0 5%;
           margin-bottom: 60px;
             
         }
-
-
+    }
         .list__flex {
         display: flex;
         justify-content: space-between;
@@ -323,6 +370,7 @@ h3 {
             flex-direction: column;
             text-align: left;
             line-height:normal;
+            margin: 0;
             padding: 20px;
          
         }
@@ -339,49 +387,79 @@ h3 {
         .list-ttl {
             text-decoration: underline;
             text-decoration-color: #2d2d2d;
-    
         }
-    }
-  }  
-}
+
+        // PCとSPのテキストの切り替え
+        .list-ttl.pc{
+            @include mq('tab'){
+                display: none;
+            }
+
+            @include mq('sp'){
+                display: none !important ;
+            }  
+        }
+        .list-ttl.sp{
+             display: none;
+            @include mq('tab'){
+                display: block;
+            }
+
+             @include mq('sp'){
+                 display: block;
+             }
+        
+         }
+         // PCとSPのテキストの切り替え---ここまで
+      }  
+     }
+  
 // ---------------.info-------------------------
 .info {
     display: flex;
     position: relative;
-    margin-bottom: 100px;
-    @include mq('tab'){
-        margin-bottom: 80px;
-    }
+    // justify-content: space-between;
+    margin-bottom: 100px;    
     @include mq('sp'){
-        // position: initial;
-        flex-direction: column;       
+        flex-direction: column; 
+        margin-bottom: 40px!important;      
         }
-    .info__img img {
-        @include mq('sp'){
-        position: absolute;
+    &__img {
         width: 100%;
-        top: 360px;
-        left: -10%;
-       margin-bottom: 60px;
-                  
-            }
-           
-    }
-
-    &__inner {
         position: absolute;
+
+     // PCとSPの画像の切り替え
+
+       .pc {
+           @include mq('tab'){
+             height: 500px;
+             width: auto;
+             left: -400px;
+           }
+           
+           @include mq('sp'){
+               display: none;
+           }
+       } 
+        @include mq('sp'){
+          position: initial;  
+          background: url(../img/info.jpg);
+          height: 297px;
+          margin-top: -80px;
+        }
+    }
+     // PCとSPの画像の切り替え-----ここまで
+    &__inner {
         padding: 0 8%;
         z-index: 3;
         @include mq('sp'){
          position: initial;
          padding: 0 5%;
          width: 100%;
-         
         }
 
     }
     &__ttl{
-       
        margin-bottom: 32px; 
        @include mq('sp'){
         margin-bottom: 15px;
@@ -406,15 +484,40 @@ h3 {
     &__text {
         max-width: 550px;
         margin-bottom: 40px;
-        @include mq('tab'){
-            // width: 440px;
+        @include mq ('tab'){
+            max-width: 50%;
+        }
+        @include mq('sp'){
+            margin-bottom: 28px;
         }
     }
+    .btn {
+        display: block;
+        @include mq('sp'){
+            margin-top: 57px;
+        }
 }
-
+  // PCとSPのテキストの切り替え
+&__ttl.pc{
+    @include mq('sp'){
+        display: none;
+    }
+}
+&__ttl.sp{
+    display: none;
+    @include mq('sp'){
+        display: block;
+    }
+} // PCとSPのテキストの切り替え---ここまで
+}
 // -------------.service--------------------------
 .service {
     margin: 0 auto;
+    padding-top: 100px;
+    @include mq('tab'){
+        padding-top: 0;
+    }
+
     &__ttl {
         text-align: center;
         margin-bottom: 42px;
@@ -428,29 +531,47 @@ h3 {
         text-align: center;
         max-width: 750px;
         margin-bottom: 40px;
+        @include mq('tab'){
+            padding: 0 5%;
+        }
     }
     &__list {
         
        .list{
          display: flex;
-           position: relative;
+        //    position: relative;
            margin-bottom: 40px;
            @include mq('sp'){
-            position: initial;
+            // position: initial;
             flex-direction: column;
             }
-           
+          
+         .service__img{
+             @include mq('sp'){
+                 display: none;
+             }
+         }
+         
        }
        .list__inner {
-           position: absolute;
+        //    position: absolute;
            max-width: 510px;
            right: 10%;
           padding: 69px 0;
-          z-index: 3;
+        //   z-index: 3;
+        @include mq('tab'){
+           padding: 0; 
+        }
+        @include mq('sp'){
+            padding: 0;
+            padding-top: 180px;
+            // height: 159px;
+            
+        }
 
 
            @include mq('tab'){
-            width: 408px;
+            max-width: 408px;
             right: 0;
         }
            .list__No {
@@ -461,9 +582,11 @@ h3 {
                font-weight: bold;
                font-family: Quicksand;
                @include subcolor();
-               @include mq('tab'){
-                margin-right: 19.2px;
-                font-size: 52.8px;
+            @include mq('sp'){
+                font-size: 56px;
+                margin-bottom: 11px;
+                margin-right: 14px;
+                padding-left: 5%;
             }
            }
            .list__ttl {
@@ -471,12 +594,19 @@ h3 {
                font-weight: bold;
                margin-bottom: 31px;
                line-height: 66px;
-               @include mq('tab'){
-                font-size: 20.8px;
+            @include mq('sp'){
+                margin-bottom: 30px;
+                font-size: 22px;
             }
            }
+           .list__text {
+               @include mq('sp'){
+                   padding: 0 5%;
+                //    margin-bottom: 41px;
+               }
+           }
        }
-    .list__3 {
+    .list .__3 {
        display: flex;
         position: relative;
         margin-bottom: 100px;
@@ -487,8 +617,29 @@ h3 {
   
        
     }
-
+    // PCとSPの画像の切り替え
+    .__1 {
+        @include mq('sp'){
+        background: url(../img/service1.jpg) no-repeat,
+                    url(../img/service-sp.jpg) no-repeat;
+    }  
+   }
+   .__2 {
+        @include mq('sp'){
+            background: url(../img/service2.jpg) no-repeat,
+                        url(../img/service-sp.jpg) no-repeat;   
+        }
+   }
+   .__3 {
+    @include mq('sp'){
+        background: url(../img/service3.jpg) no-repeat,
+                    url(../img/service-sp.jpg) no-repeat;   
+    }
 }
+// PCとSPの画像の切り替え-----ここまで
+}
+
+
 // ---------.works-----------------------------
 .works {
     
@@ -496,19 +647,21 @@ h3 {
     height: 862px;
     background-size: cover;
     background-repeat: no-repeat;
-    
     @include mq('tab'){
-       height: 690px;
+        height: 720px;
     }
+    @include mq('sp'){
+        height: 698px;
+    }
+  
     
     &__ttl {
          color: #fff;
          text-align: center;
          padding-top: 100px;
          margin-bottom: 42px;
-         @include mq('tab'){
-            margin-top: 80px;
-            margin-bottom: 33.6px;
+         @include mq('sp'){
+           
         }
     }
     &__text {
@@ -517,6 +670,10 @@ h3 {
         margin: 0 auto;
         text-align: center;
         margin-bottom: 14px;
+        @include mq ('tab'){
+            padding: 0 5%;
+            padding-bottom: 40px;
+        }
     }
     &__list {
         background-color:#fff;
@@ -524,12 +681,24 @@ h3 {
       }
       &__list-item {
           width: 364px;
+          @include mq('tab'){
+            width: 332px;
+        }
+          @include mq('sp'){
+              width: 311px;
+          }
       }
 
     .btn {
         display: block;
         margin: 0 auto;
         // margin-top: 66px;
+        @include mq('tab'){
+            margin-top: 30px;
+        }
+        @include mq('sp'){
+            margin-top: 40px;
+        }
     }
 }
 // ---------スライダー---------------
@@ -542,7 +711,9 @@ h3 {
     }
     .slick-slide {
         margin: 0 10px;
-     
+     @include mq('sp'){
+      
+     }
     }
 }
 /*矢印の設定*/
@@ -574,6 +745,9 @@ h3 {
 }
 .slick-track {
     padding-top: 6%;
+   @include mq('sp') {
+       margin: 0 auto;
+   }
    
 }
 
@@ -603,6 +777,9 @@ h3 {
        text-align: center;
        margin: 0 auto;
        margin-bottom: 42px;
+       @include mq('tab'){
+           padding: 0 5%;
+       }
    }
    &__conteinar {
        display: flex;
@@ -612,8 +789,11 @@ h3 {
     @include mq('tab'){
         padding-left: 12px;
     }
-   
-  
+    @include mq('sp'){
+        flex-direction: column;
+        // width: 100%;
+        padding: 0 5%;
+    }
 }
 
    .btn {
@@ -631,7 +811,7 @@ h3 {
        margin-right: 0;
        }
 
-       @include mq ('sp') {
+       @include mq ('tab') {
            margin:0 20px 20px 0 ;
            width: calc(50% - 50px/ 2);
            &:nth-child(2n){
@@ -650,6 +830,7 @@ h3 {
            padding-top: 56.25%;
            overflow: hidden;
        }
+     
        .card__img {
            position: absolute; 
            top: 50%;
@@ -663,45 +844,55 @@ h3 {
            padding: 30px;
            @include mq('tab'){
             padding: 24px;
-        }
+           }
 
            :last-child {
                margin-bottom: 0;
-           }
+            }
            .card__ttl {
                margin-bottom: 5%;
                font-size: 1.125rem;
                font-weight: bold;
-           }
+            }
            .card__text {
                text-decoration: underline;
                text-decoration-color: #000;
-
-           }
+             }
        }
-    }
-  ---------------.blog-------------------------------
+       @include mq('sp'){
+           width: 100%;
+       }
+    
+    }  
+//   ---------------.blog-------------------------------
 .blog {
     padding: 0 8%;
+    @include mq('tab'){
+        height: 600px;
+    }
+    @include mq('sp'){
+        height: 577px;
+    }
     &__inner {
       position: relative;
       background-color: #0B5240;
       height: 412px;
       margin-bottom: 91px;
-      @include mq('tab'){
-          height: 329.6px;
+      @include mq('sp'){
+          width: 100%;
+          height: 517px;
+          
       }
     }
     &__flex {
       display: flex;
       justify-content: space-between;
       padding-right: 70px;
-      @include mq('tab'){
-       padding-right: 56px;
-    }
+    
     @include mq('sp'){
-        position: initial;
+        // position: initial;
         flex-direction: column;
+        padding: 0;
         }
       
       
@@ -715,12 +906,12 @@ h3 {
         padding-left: 111px;
         margin-bottom: 42px;
         @include mq('tab'){
-            font-size: 28.8px;
-            padding-top: 104.8px;
-            padding-left: 88.8px;
+            padding:100px 40px 18px;
         }
-       
-        
+        @include mq('sp'){
+
+         padding:60px 118px 18px;
+        }
     }
     &__info {
         background-color: #fff;
@@ -731,7 +922,8 @@ h3 {
             margin-top: 80px; 
         }
         @include mq('sp'){
-               
+             margin: 0 auto; 
+             margin: 0 20px;
             }
      
     }
@@ -770,8 +962,12 @@ h3 {
         margin-top: -100px;
         margin-left: 70px;
         @include mq('tab'){
-            margin-top: -50px;
-            margin-left: 50px;
+            margin: 30px 228px;
+            
+        }
+        @include mq('sp'){
+         margin-top: 30px;   
+         margin-bottom: 60px;   
            
         }
     }
@@ -785,20 +981,41 @@ h3 {
     &__ttl {
         text-align: center;
         margin-bottom: 42px;
+        @include mq('tab'){
+
+        }
+        @include mq('sp'){
+            margin-bottom: 30px;
+        }
     }
     &__text {
         font-size: 26px;
         text-align: center;
         margin-bottom: 33px;
+        @include mq('tab'){
+            font-size: 22px;
+            padding: 0 5%;
+            font-weight: bold;
+        }
     }
     &__flex {
        display: flex;
        justify-content: center;
        margin-bottom: 24px;
+       @include mq('sp'){
+           flex-direction: column;
+           width: 100%;
+           padding: 0 5%;
+       }
     }
     .cat-tel__flex {
         display: flex;
         margin-right: 20px;
+        @include mq('sp'){
+            // flex-direction: column;
+            width: 100%;
+            padding: 0 5%;
+        }
         
         
         .tel {
@@ -816,14 +1033,27 @@ h3 {
             font-weight: bold;
             @include subcolor();
             line-height: 78px;
+            @include mq('sp'){
+                font-size: 36px;
+            }
+
         }
     }
     .cat-btn {
         width: 394px;
+        @include mq('tab'){
+            width: 300px;
+        }
+        @include mq('sp'){
+            width: 318px;
+        }
     }
     .open-time {
         display: block;
         text-align: center;
+        @include mq('sp'){
+            
+        }
     }
 }
 // --------------------.footer-----------------
@@ -833,9 +1063,11 @@ h3 {
     height: 554px;
     padding: 100px 0;
     color: #fff;
-    @include mq('tab'){
+    @include mq('sp'){
+     height: 336px;
+     padding: 60px 0;
+      
        
-        padding:80px 0;
     }
   &__inner {
       display: block;
@@ -846,9 +1078,16 @@ h3 {
       font-weight: bold;
       font-family: Quicksand;
       margin-bottom: 40px;
+      @include mq('sp') {
+          margin-bottom: 20px;
+      }
   }
   &__ad {
       line-height: 27.2px;
+      @include mq('sp'){
+          margin-bottom: 40px;
+      }
+
   } 
   &__menu {
       padding: 0 220px;
@@ -857,12 +1096,18 @@ h3 {
          color: #fff; 
       }
       @include mq('tab'){
-        padding: 0 176px;
+        padding: 0 5%;
     }  
+    @include mq('sp'){
+       display: none;
+    }
   }
   
   &__copys {
       text-align: center;
+      @include mq('sp'){
+         padding-bottom: 57px;
+      }
   }
 
 }
@@ -957,4 +1202,3 @@ h3 {
       transform: translateX(0);
       }
     }
-    

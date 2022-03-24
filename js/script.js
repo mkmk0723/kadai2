@@ -78,6 +78,8 @@ $('.slider').slick({
   autoplay: true,//自動的に動き出すか。初期値はfalse。
   infinite: true,//スライドをループさせるかどうか。初期値はtrue。
   variableWidth:true,
+  adaptiveHeight: true,
+  centerMode: true,
   slidesToShow: 3,//スライドを画面に3枚見せる
   slidesToScroll: 1,//1回のスクロールで1枚の写真を移動して見せる
   prevArrow: '<div class="slick-prev"></div>',//矢印部分PreviewのHTMLを変更
